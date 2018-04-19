@@ -1,0 +1,11 @@
+.idea/
+
+#dependencies
+/node_modules
+
+#System files
+Thumbs.db
+.DS_Store
+
+#PDF Project Reports
+*.pdf

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="phytotronGreenhouseManagementApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Abhinav Rai">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Phytotron Greenhouse Management Application</title>
+
+    <!--STYLE-SHEETS-->
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="./stylesheets/angular-material.css">
+    <!--md-data-table style sheet-->
+    <link rel="stylesheet" href="./stylesheets/md-data-table.css">
+    <!--angular flash style sheet-->
+    <link rel="stylesheet" href="./stylesheets/angular-flash.css">
+
+    <!--Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div ng-view></div>
+
+    <!--SCRIPTS-->
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="./angular/angular.js"></script>
+    <script src="./angular/angular-animate.js"></script>
+    <script src="./angular/angular-aria.js"></script>
+    <script src="./angular/angular-messages.js"></script>
+    <script src="./angular/angular-route.js"></script>
+
+    <!-- Angular Material Library-->
+    <script src="./angular/angular-material.js"></script>
+    <!--md-data-table Library-->
+    <script src="./angular/md-data-table.js"></script>
+    <!--angular flash -->
+    <script src="./angular/angular-flash.js"></script>
+
+    <!--Moment JS and Angular Moment Library-->
+    <script src="./library/moment.js"></script>
+    <script src="./angular/angular-moment.js"></script>
+
+    <!--Project specific scripts-->
+    <script src="client.application.constants.js"></script>
+    <script src="client.application.module.js"></script>
+    <script src="client.application.config.js"></script>
+
+    <!--services-->
+    <script src="service/client.application-settings.service.js"></script>
+    <script src="service/client.authentication.service.js"></script>
+    <script src="service/client.note.service.js"></script>
+    <script src="service/client.user.service.js"></script>
+
+
+    <!--components/pages-->
+    <script src="top-information-bar/client.top-information-bar.component.js"></script>
+    <script src="top-navigation-bar/client.top-navigation-bar.component.js"></script>
+    <script src="login-page/client.login-page.component.js"></script><!--Login Page-->
+    <script src="home-page/client.home-page.component.js"></script><!--Home Page-->
+
+    <!--Application Settings Page-->
+    <script src="application-settings-page/client.application-settings-page.component.js"></script>
+</body>
+</html>
