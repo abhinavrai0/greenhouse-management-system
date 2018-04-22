@@ -15,6 +15,8 @@ angular.module('phytotronGreenhouseManagementApp')
                 template: '<home-page></home-page>'
             });
 
+        // URL-
+
         // URL_Component mappings: Settings
         $routeProvider
             .when('/application-settings',{
