@@ -6,21 +6,28 @@ angular.module('phytotronGreenhouseManagementApp')
     function config($routeProvider,$locationProvider){
         $locationProvider.hashPrefix('');
 
-        // URL-Component mappings: home and login
+        // URL-Pages Mappings general application
         $routeProvider
             .when('/',{
                 template: '<login-page></login-page>'
             })
             .when('/home',{
                 template: '<home-page></home-page>'
-            });
-
-        // URL-
-
-        // URL_Component mappings: Settings
-        $routeProvider
+            })
             .when('/application-settings',{
                 template:'<application-settings-page></application-settings-page>'
+            });
+
+        // URL-Pages Mappings greenhouse
+        $routeProvider
+            .when('/greenhouse-list',{
+                template: '<greenhouse-list-page></greenhouse-list-page>'
+            })
+            .when('/greenhouse-add',{
+                template: '<greenhouse-add-page></greenhouse-add-page>'
+            })
+            .when('/greenhouse-update/:id',{
+                template: '<greenhouse-update-page></greenhouse-update-page>'
             });
 }]);
 

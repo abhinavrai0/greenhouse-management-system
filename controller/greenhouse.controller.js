@@ -15,6 +15,18 @@ exports.getGreenhouseList = function (req, res) {
         });
 };
 
+// Get Greenhouse By Id
+exports.getGreenhouseById = function (req, res) {
+    Greenhouse.findOne({greenhouse_id: req.params.id})
+        .exec(function(err,greenhouse){
+            if(err){
+                res.status(500);
+                res.send("Cannot find requested Greenhouse: "+err);
+            }else{
+                res.send(greenhouse);
+            }
+        });
+};
 
 // Create a new Greenhouse
 exports.addGreenhouse = function (req, res) {
@@ -33,19 +45,20 @@ exports.addGreenhouse = function (req, res) {
 
 // Update an existing Greenhouse
 exports.updateGreenhouse = function (req, res) {
-    let greenhouse = req.body;
-    Greenhouse.findOne({_id: greenhouse._id},function(err, greenhouse){
+    let currentGreenhouse = req.body;
+
+    Greenhouse.findOne({_id: currentGreenhouse._id},function(err, greenhouse){
         if(err){
             res.status(500);
             res.send('Cannot find Greenhouse to update'+err);
         }else{
-            greenhouse.set(greenhouse);
+            greenhouse.set(currentGreenhouse);
             greenhouse.save(function(err){
                 if(err){
                     res.status(500);
                     res.send('Error saving Greenhouse update '+err);
                 }else{
-                    res.send('Greenhouse saved successfully');
+                    res.send('Greenhouse updated successfully');
                 }
             });
         }
