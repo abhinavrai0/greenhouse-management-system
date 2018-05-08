@@ -12,26 +12,12 @@ let GreenhouseSchema = new Schema({
 
     greenhouse_name: String,
 
-    greenhouse_controllers: [
-        {
+    greenhouse_light_controller: {
 
-            controller_id: {
-                type: String,
-                required: true
-            },
+        controller_ip: String,
 
-            controller_ip: String,
-
-            scheduler_files: [
-                {
-                    file_path: {
-                        type: String,
-                        required: true
-                    }
-                }
-            ]
-        }
-    ]
+        scheduler_file_path: String
+    }
 });
 
 module.exports = mongoose.model('Greenhouse', GreenhouseSchema);

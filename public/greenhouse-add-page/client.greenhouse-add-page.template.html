@@ -3,8 +3,14 @@
 
     <div layout="column" ng-cloak class="md-inline-form">
         <md-content layout-padding>
-            <h4>Create Greenhouse</h4>
-            <div layout-gt-xs="column">
+            <div layout="row">
+                <md-button class="md-raised" ng-disabled=" $ctrl.greenhouse.greenhouse_id=='' ||
+                                                           $ctrl.greenhouse.greenhouse_light_controller.controller_ip=='' ||
+                                                           $ctrl.greenhouse.greenhouse_light_controller.scheduler_file_path=='' "
+                           ng-click="$ctrl.createGreenhouse()"> Create Greenhouse </md-button>
+                <md-button class="md-raised" ng-href="#/greenhouse-list"> Go Back</md-button>
+            </div>
+            <div layout-gt-xs="row">
                 <md-input-container class="md-block" flex-gt-xs>
                     <label>Greenhouse Id</label>
                     <input type="text" ng-model="$ctrl.greenhouse.greenhouse_id">
@@ -14,12 +20,20 @@
                     <label>Greenhouse Name</label>
                     <input type="text" ng-model="$ctrl.greenhouse.greenhouse_name">
                 </md-input-container>
-                <div layout="row">
-                    <md-button class="md-raised" ng-click="$ctrl.createGreenhouse()"> Create Greenhouse </md-button>
-                    <md-button class="md-raised" ng-href="#/greenhouse-list"> Go Back</md-button>
-                </div>
+            </div>
+            <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label>Controller IP</label>
+                    <input type="text" ng-model="$ctrl.greenhouse.greenhouse_light_controller.controller_ip">
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label>Scheduler File Path</label>
+                    <input type="text" ng-model="$ctrl.greenhouse.greenhouse_light_controller.scheduler_file_path">
+                </md-input-container>
             </div>
         </md-content>
+
     </div>
     <flash-message></flash-message>
 </div>

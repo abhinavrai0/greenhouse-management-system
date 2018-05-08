@@ -1,5 +1,7 @@
 'use strict'
 let Greenhouse = require('../models/greenhouse');
+let CONSTANTS = require('../constants');
+let SFTPClient = require('ssh2').Client;
 
 
 // Get Greenhouse list
@@ -75,4 +77,73 @@ exports.deleteGreenhouse = function (req, res) {
             res.send('Greenhouse removed');
         }
     });
+};
+
+exports.getGreenhouseLightsScheduleById = function (req, res) {
+    Greenhouse.findOne({greenhouse_id: req.params.id})
+        .exec(function(err,greenhouse){
+            if(err){
+                res.status(500);
+                res.send("Cannot find requested Greenhouse: "+err);
+            }else{
+                // Get the controller ip and filepath info from greenhouse and send the files content
+                let greenhouseInfo = {
+                    'controllerIP': greenhouse.greenhouse_light_controller.controller_ip,
+                    'controllerSchedulerFilePath': greenhouse.greenhouse_light_controller.scheduler_file_path
+                };
+                // using the info retrieved, get the file from device
+                // Get a SFTPClient object.
+                let conn = SFTPClient();
+                // define the handler for ready event.
+                conn.on('ready', function () {
+                    console.log('Client : ready');
+                    conn.sftp(function (err, sftp) {
+                        if(err){
+                            res.status(500);
+                            res.send('error creating a sftp connection to machine: '+ err);
+                        }
+                        // if sftp is successful then initiate a read dir command
+                        sftp.readdir('/ChamberData', function (err, list) {
+                            if(err){
+                                conn.end();
+                                res.status(500);
+                                res.send('error fetching the contents of the directory: '+ err);
+                            }
+                            conn.end();
+                            res.send(list);
+                        });
+
+                    });
+                });
+
+                let sftpConfig = {
+                    host: CONSTANTS.REMOTE_MACHINE_IP,
+                    username: CONSTANTS.REMOTE_MACHINE_USERNAME,
+                    password: CONSTANTS.REMOTE_MACHINE_PASSWORD,
+                    port: CONSTANTS.REMOTE_MACHINE_PORT,
+                };
+
+                conn.connect(sftpConfig);
+            }
+        });
+};
+
+exports.updateGreenhouseLightsScheduleById = function (req, res) {
+    let greenhouseLightsScheduleReqObj = req.body;
+    let greenhouseId = greenhouseLightsScheduleReqObj.greenhouse_id;
+    let greenhouseLightsSchedule = greenhouseLightsScheduleReqObj.greenhouseLightsSchedule
+    Greenhouse.findOne({greenhouse_id: greenhouseId})
+        .exec(function(err,greenhouse){
+            if(err){
+                res.status(500);
+                res.send("Cannot find requested Greenhouse: "+err);
+            }else{
+                // Get the controller ip and filepath info from greenhouse and update the files content
+                let greenhouseInfo = {
+                    'ControllerIP': greenhouse.greenhouse_light_controller.controller_ip,
+                    'controllerSchedulerFilePath': greenhouse.greenhouse_light_controller.scheduler_file_path
+                };
+                res.send('Update Successful for GHID: '+greenhouse.greenhouse_id+' with schedule: '+ greenhouseLightsSchedule);
+            }
+        });
 };

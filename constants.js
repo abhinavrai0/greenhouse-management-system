@@ -19,4 +19,17 @@ module.exports = {
 
     MONGO_DB_PORT: '27017',
 
+    // Application settings
+    REMOTE_MACHINE_IP: '10.64.56.99',
+
+    //REMOTE_MACHINE_USERNAME: 'chamber.phyto',
+    REMOTE_MACHINE_USERNAME: 'GHlightstartup',
+
+    //REMOTE_MACHINE_PASSWORD: 'Phyt0chamb3r',
+    REMOTE_MACHINE_PASSWORD: 'phytotron',
+
+    REMOTE_MACHINE_DOMAIN: 'WOLFTECH',
+
+    REMOTE_MACHINE_PORT: 24,
+
 };

@@ -25,7 +25,7 @@ router.post('/note/delete', NoteController.deleteNote);
 // Get a list of all the greenhouses
 router.get('/greenhouses', GreenhouseController.getGreenhouseList);
 
-// Get a greenhouseBy Id
+// Get a greenhouse By Id
 router.get('/greenhouse/:id', GreenhouseController.getGreenhouseById);
 
 // Create a Greenhouse
@@ -36,6 +36,12 @@ router.post('/greenhouse/update', GreenhouseController.updateGreenhouse);
 
 // Delete a greenhouse
 router.post('/greenhouse/delete', GreenhouseController.deleteGreenhouse);
+
+// Get a greenhouseLightsSchedule by id
+router.get('/greenhouseLightsSchedule/:id', GreenhouseController.getGreenhouseLightsScheduleById);
+
+// Update a greenhouse Lights Schedule
+router.post('/greenhouseLightsSchedule/updateById', GreenhouseController.updateGreenhouseLightsScheduleById);
 
 
 // Get Application Settings

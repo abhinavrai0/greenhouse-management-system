@@ -22,6 +22,16 @@ angular.module('phytotronGreenhouseManagementApp')
             //update a Greenhouse
             updateGreenhouse: function(greenhouse){
                 return $http.post('/greenhouse/update',greenhouse);
+            },
+            
+            //get Greenhouse Lights Schedule By Id
+            getGreenhouseLightsScheduleById: function (greenhouseId) {
+                return $http.get('/greenhouseLightsSchedule/'+greenhouseId);
+            },
+
+            //update a Greenhouse Lights Schedule By Id
+            updateGreenhouseLightsScheduleById: function(greenhouseLightsScheduleReqObject){
+                return $http.post('/greenhouseLightsSchedule/updateById',greenhouseLightsScheduleReqObject);
             }
 
         };

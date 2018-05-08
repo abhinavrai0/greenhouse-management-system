@@ -1,0 +1,22 @@
+<div layout="column">
+    <top-navigation-bar></top-navigation-bar>
+
+    <div layout="column" ng-cloak class="md-inline-form">
+        <md-content layout-padding>
+            <div layout="row">
+                <md-button class="md-raised" ng-disabled=" $ctrl.greenhouse.greenhouse_id=='' ||
+                                                           $ctrl.greenhouse.greenhouse_light_controller.controller_ip=='' ||
+                                                           $ctrl.greenhouse.greenhouse_light_controller.scheduler_file_path=='' "
+                           ng-click="$ctrl.updateGreenhouseLightsSchedule()"> Update Lights Schedule </md-button>
+                <md-button class="md-raised" ng-href="#/greenhouse-list"> Go Back</md-button>
+            </div>
+            <div>
+                <p>{{$ctrl.greenhouseLightsSchedule}}</p>
+            </div>
+
+
+
+        </md-content>
+    </div>
+    <flash-message></flash-message>
+</div>

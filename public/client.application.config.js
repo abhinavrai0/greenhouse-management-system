@@ -28,6 +28,9 @@ angular.module('phytotronGreenhouseManagementApp')
             })
             .when('/greenhouse-update/:id',{
                 template: '<greenhouse-update-page></greenhouse-update-page>'
+            })
+            .when('/greenhouse-manage-lights/:id',{
+                template: '<greenhouse-manage-lights-page></greenhouse-manage-lights-page>'
             });
 }]);
 

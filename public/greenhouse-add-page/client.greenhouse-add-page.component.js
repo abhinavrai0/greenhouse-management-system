@@ -6,11 +6,7 @@ angular.module('phytotronGreenhouseManagementApp')
             let ctrl = this;
 
             ctrl.$onInit = function(){
-                ctrl.greenhouse = {
-                    greenhouse_id: '',
-                    greenhouse_name: '',
-                    greenhouse_controllers: []
-                };
+                ctrl.clearInputFields();
             };
 
             // create a new greenhouse
@@ -18,9 +14,23 @@ angular.module('phytotronGreenhouseManagementApp')
                 GreenhouseService.createGreenhouse(ctrl.greenhouse)
                     .then(function success(res){
                         Flash.create('success',res.data);
+                        ctrl.clearInputFields();
                     }, function failure(res){
                         Flash.create('danger',res.data);
                     })
+            };
+            
+            ctrl.clearInputFields = function () {
+                ctrl.greenhouse = {
+                    greenhouse_id: '',
+                    greenhouse_name: '',
+                    greenhouse_light_controller: {
+
+                        controller_ip: '',
+
+                        scheduler_file_path: ''
+                    }
+                };
             };
         }
     });
